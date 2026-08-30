@@ -1,4 +1,4 @@
-// Exemplo de inicialização do QEMU no Android
+
 public class QemuEmulator {
     private Process qemuProcess;
     
