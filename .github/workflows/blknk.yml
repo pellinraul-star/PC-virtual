@@ -1,0 +1,23 @@
+// Exemplo de inicialização do QEMU no Android
+public class QemuEmulator {
+    private Process qemuProcess;
+    
+    public void startVirtualMachine(String isoPath, int ramMB) {
+        // Comando do QEMU — o coração do emulador
+        String[] cmd = {
+            "qemu-system-x86_64",
+            "-m", ramMB + "M",          // Memória RAM
+            "-cdrom", isoPath,          // Sistema operacional (ISO)
+            "-boot", "d",               // Dar boot pelo CD/ISO
+            "-drive", "file=hdd.img,format=qcow2", // Disco rígido virtual
+            "-vga", "virtio",           // Placa de vídeo virtual
+            "-nographic"                // Usar interface do Android
+        };
+        
+        try {
+            qemuProcess = Runtime.getRuntime().exec(cmd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
