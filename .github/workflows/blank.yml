@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PC Builder Virtual - RTX 5070</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080b12;
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    padding: 30px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #111827, #1e293b);
+    border-bottom: 2px solid #334155;
+}
+
+header h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #94a3b8;
+}
+
+.container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 25px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: #111827;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.card h2 {
+    margin-bottom: 18px;
+    color: #60a5fa;
+}
+
+.component {
+    margin-bottom: 16px;
+}
+
+.component label {
+    display: block;
+    margin-bottom: 7px;
+    color: #cbd5e1;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 9px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: white;
+    font-size: 15px;
+}
+
+select:focus {
+    outline: 2px solid #3b82f6;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+button.secondary {
+    background: #475569;
+}
+
+button.secondary:hover {
+    background: #64748b;
+}
+
+.price {
+    font-size: 36px;
+    font-weight: bold;
+    color: #4ade80;
+    margin-bottom: 20px;
+}
+
+.specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.spec {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 9px;
+    padding: 13px;
+}
+
+.spec span {
+    display: block;
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.spec strong {
+    font-size: 16px;
+}
+
+.status {
+    margin-top: 20px;
+    padding: 16px;
+    background: #0f172a;
+    border-radius: 10px;
+    line-height: 1.7;
+}
+
+.good {
+    color: #4ade80;
+}
+
+.warning {
+    color: #facc15;
+}
+
+.bad {
+    color: #f87171;
+}
+
+.performance {
+    margin-top: 25px;
+}
+
+.game {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 9px;
+}
+
+.fps {
+    font-weight: bold;
+    color: #4ade80;
+}
+
+.bar {
+    height: 10px;
+    width: 100%;
+    background: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+.game small {
+    display: block;
+    margin-top: 8px;
+    color: #94a3b8;
+}
+
+.parts-list {
+    margin-top: 10px;
+}
+
+.part {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 5px;
+    border-bottom: 1px solid #334155;
+}
+
+.part strong {
+    text-align: right;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: #1e3a8a;
+    color: #bfdbfe;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #64748b;
+}
+
+@media(max-width: 850px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .specs {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🖥️ PC Builder Virtual</h1>
+    <p>Monte seu PC gamer e confira compatibilidade, preço e desempenho.</p>
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<!-- ========================= -->
+<!-- COMPONENTES -->
+<!-- ========================= -->
+
+<div class="card">
+
+<h2>🔧 Componentes</h2>
+
+<div class="badge">
+    🚀 Configuração inicial: RTX 5070 12 GB
+</div>
+
+<!-- CPU -->
+
+<div class="component">
+
+<label>🧠 Processador</label>
+
+<select id="cpu">
+
+<option
+value="r5-7600"
+data-price="1050"
+data-score="85"
+data-socket="AM5">
+
+Ryzen 5 7600 — R$ 1.050
+
+</option>
+
+<option
+value="r7-7700"
+data-price="1700"
+data-score="105"
+data-socket="AM5">
+
+Ryzen 7 7700 — R$ 1.700
+
+</option>
+
+<option
+value="r7-7800x3d"
+data-price="2500"
+data-score="125"
+data-socket="AM5">
+
+Ryzen 7 7800X3D — R$ 2.500
+
+</option>
+
+<option
+value="r7-9800x3d"
+data-price="3200"
+data-score="145"
+data-socket="AM5">
+
+Ryzen 7 9800X3D — R$ 3.200
+
+</option>
+
+<option
+value="i5-14400f"
+data-price="1250"
+data-score="95"
+data-socket="LGA1700">
+
+Core i5-14400F — R$ 1.250
+
+</option>
+
+<option
+value="i7-14700f"
+data-price="2300"
+data-score="130"
+data-socket="LGA1700">
+
+Core i7-14700F — R$ 2.300
+
+</option>
+
+</select>
+
+</div>
+
+<!-- GPU -->
+
+<div class="component">
+
+<label>🎮 Placa de vídeo</label>
+
+<select id="gpu">
+
+<option
+value="rtx5070"
+data-price="5000"
+data-score="170"
+data-vram="12">
+
+GeForce RTX 5070 12 GB — R$ 5.000
+
+</option>
+
+<option
+value="rtx5070ti"
+data-price="6500"
+data-score="200"
+data-vram="16">
+
+GeForce RTX 5070 Ti 16 GB — R$ 6.500
+
+</option>
+
+<option
+value="rtx4070"
+data-price="3500"
+data-score="135"
+data-vram="12">
+
+GeForce RTX 4070 12 GB — R$ 3.500
+
+</option>
+
+<option
+value="rtx4060"
+data-price="1900"
+data-score="100"
+data-vram="8">
+
+GeForce RTX 4060 8 GB — R$ 1.900
+
+</option>
+
+<option
+value="rtx3060"
+data-price="1700"
+data-score="90"
+data-vram="12">
+
+GeForce RTX 3060 12 GB — R$ 1.700
+
+</option>
+
+<option
+value="rx6600"
+data-price="1300"
+data-score="75"
+data-vram="8">
+
+Radeon RX 6600 8 GB — R$ 1.300
+
+</option>
+
+<option
+value="gtx1650"
+data-price="850"
+data-score="45"
+data-vram="4">
+
+GeForce GTX 1650 4 GB — R$ 850
+
+</option>
+
+<option
+value="gt730"
+data-price="250"
+data-score="15"
+data-vram="2">
+
+GeForce GT 730 2 GB — R$ 250
+
+</option>
+
+</select>
+
+</div>
+
+<!-- RAM -->
+
+<div class="component">
+
+<label>🧠 Memória RAM</label>
+
+<select id="ram">
+
+<option
+value="32ddr5"
+data-price="700"
+data-capacity="32"
+data-type="DDR5">
+
+32 GB DDR5 — R$ 700
+
+</option>
+
+<option
+value="16ddr5"
+data-price="450"
+data-capacity="16"
+data-type="DDR5">
+
+16 GB DDR5 — R$ 450
+
+</option>
+
+<option
+value="64ddr5"
+data-price="1200"
+data-capacity="64"
+data-type="DDR5">
+
+64 GB DDR5 — R$ 1.200
+
+</option>
+
+</select>
+
+</div>
+
+<!-- SSD -->
+
+<div class="component">
+
+<label>💾 Armazenamento</label>
+
+<select id="storage">
+
+<option
+value="ssd1tb"
+data-price="400">
+
+SSD NVMe 1 TB — R$ 400
+
+</option>
+
+<option
+value="ssd2tb"
+data-price="700">
+
+SSD NVMe 2 TB — R$ 700
+
+</option>
+
+<option
+value="ssd4tb"
+data-price="1300">
+
+SSD NVMe 4 TB — R$ 1.300
+
+</option>
+
+</select>
+
+</div>
+
+<!-- FONTE -->
+
+<div class="component">
+
+<label>🔌 Fonte</label>
+
+<select id="psu">
+
+<option
+value="750"
+data-price="550">
+
+750W — R$ 550
+
+</option>
+
+<option
+value="850"
+data-price="700">
+
+850W — R$ 700
+
+</option>
+
+<option
+value="1000"
+data-price="950">
+
+1000W — R$ 950
+
+</option>
+
+</select>
+
+</div>
+
+<!-- PLACA MÃE -->
+
+<div class="component">
+
+<label>🧩 Placa-mãe</label>
+
+<select id="motherboard">
+
+<option
+value="b650"
+data-price="800"
+data-socket="AM5"
+data-ram="DDR5">
+
+B650 AM5 — R$ 800
+
+</option>
+
+<option
+value="b650premium"
+data-price="1200"
+data-socket="AM5"
+data-ram="DDR5">
+
+B650 Premium — R$ 1.200
+
+</option>
+
+<option
+value="x670"
+data-price="1500"
+data-socket="AM5"
+data-ram="DDR5">
+
+X670 AM5 — R$ 1.500
+
+</option>
+
+<option
+value="b760"
+data-price="850"
+data-socket="LGA1700"
+data-ram="DDR5">
+
+B760 LGA1700 — R$ 850
+
+</option>
+
+</select>
+
+</div>
+
+<!-- GABINETE -->
+
+<div class="component">
+
+<label>🖥️ Gabinete</label>
+
+<select id="case">
+
+<option data-price="400">
+
+Gabinete Gamer Airflow — R$ 400
+
+</option>
+
+<option data-price="650">
+
+Gabinete Gamer Premium — R$ 650
+
+</option>
+
+<option data-price="900">
+
+Gabinete Gamer Full Tower — R$ 900
+
+</option>
+
+</select>
+
+</div>
+
+<button onclick="buildPC()">
+🔨 Montar PC
+</button>
+
+<button class="secondary" onclick="resetPC()">
+↩️ Restaurar configuração
+</button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- RESULTADO -->
+<!-- ========================= -->
+
+<div class="card">
+
+<h2>📊 Seu PC</h2>
+
+<div class="price" id="total">
+R$ 0
+</div>
+
+<div class="specs">
+
+<div class="spec">
+<span>CPU</span>
+<strong id="cpuResult">-</strong>
+</div>
+
+<div class="spec">
+<span>GPU</span>
+<strong id="gpuResult">-</strong>
+</div>
+
+<div class="spec">
+<span>VRAM</span>
+<strong id="vramResult">-</strong>
+</div>
+
+<div class="spec">
+<span>RAM</span>
+<strong id="ramResult">-</strong>
+</div>
+
+<div class="spec">
+<span>SSD</span>
+<strong id="storageResult">-</strong>
+</div>
+
+<div class="spec">
+<span>Fonte</span>
+<strong id="psuResult">-</strong>
+</div>
+
+<div class="spec">
+<span>Placa-mãe</span>
+<strong id="mbResult">-</strong>
+</div>
+
+</div>
+
+
+<!-- COMPATIBILIDADE -->
+
+<div class="status">
+
+<h3>🔍 Compatibilidade</h3>
+
+<div id="compatibility">
+Monte o PC para verificar.
+</div>
+
+</div>
+
+
+<!-- DESEMPENHO -->
+
+<div class="performance">
+
+<h2>🎮 Estimativa de FPS</h2>
+
+<p style="color:#94a3b8;margin-bottom:15px;">
+Estimativa aproximada em 1080p.
+</p>
+
+<div id="games"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- COMPONENTES SELECIONADOS -->
+<!-- ========================= -->
+
+<div class="card" style="margin-top:20px;">
+
+<h2>📦 Componentes selecionados</h2>
+
+<div class="parts-list" id="partsList"></div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+PC Builder Virtual • Simulador educativo<br>
+Preços e FPS são estimativas e podem variar conforme o hardware, configurações e jogo.
+
+</footer>
+
+
+<script>
+
+/* =====================================
+   JOGOS
+===================================== */
+
+const games = [
+
+{
+    name: "GTA V",
+    base: 180
+},
+
+{
+    name: "Red Dead Redemption 2",
+    base: 100
+},
+
+{
+    name: "Resident Evil 2 Remake",
+    base: 170
+},
+
+{
+    name: "Resident Evil 3 Remake",
+    base: 155
+},
+
+{
+    name: "Resident Evil 4 Remake",
+    base: 120
+},
+
+{
+    name: "Metal Gear Solid V",
+    base: 180
+},
+
+{
+    name: "Cyberpunk 2077",
+    base: 100
+},
+
+{
+    name: "Forza Horizon 5",
+    base: 125
+},
+
+{
+    name: "Uncharted: Legacy of Thieves",
+    base: 95
+},
+
+{
+    name: "Hogwarts Legacy",
+    base: 90
+},
+
+{
+    name: "The Last of Us Part I",
+    base: 80
+},
+
+{
+    name: "Alan Wake 2",
+    base: 65
+}
+
+];
+
+
+/* =====================================
+   FORMATAR DINHEIRO
+===================================== */
+
+function money(value) {
+
+    return value.toLocaleString(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    );
+
+}
+
+
+/* =====================================
+   PEGAR OPTION SELECIONADA
+===================================== */
+
+function getOption(id) {
+
+    const select =
+        document.getElementById(id);
+
+    return select.options[
+        select.selectedIndex
+    ];
+
+}
+
+
+/* =====================================
+   MONTAR PC
+===================================== */
+
+function buildPC() {
+
+    const cpu =
+        getOption("cpu");
+
+    const gpu =
+        getOption("gpu");
+
+    const ram =
+        getOption("ram");
+
+    const storage =
+        getOption("storage");
+
+    const psu =
+        getOption("psu");
+
+    const motherboard =
+        getOption("motherboard");
+
+    const pcCase =
+        getOption("case");
+
+
+    const total =
+
+        Number(cpu.dataset.price) +
+
+        Number(gpu.dataset.price) +
+
+        Number(ram.dataset.price) +
+
+        Number(storage.dataset.price) +
+
+        Number(psu.dataset.price) +
+
+        Number(motherboard.dataset.price) +
+
+        Number(pcCase.dataset.price);
+
+
+    document.getElementById("total")
+        .textContent = money(total);
+
+
+    document.getElementById("cpuResult")
+        .textContent =
+        cpu.textContent.split("—")[0].trim();
+
+
+    document.getElementById("gpuResult")
+        .textContent =
+        gpu.textContent.split("—")[0].trim();
+
+
+    document.getElementById("vramResult")
+        .textContent =
+        gpu.dataset.vram + " GB";
+
+
+    document.getElementById("ramResult")
+        .textContent =
+        ram.dataset.capacity +
+        " GB " +
+        ram.dataset.type;
+
+
+    document.getElementById("storageResult")
+        .textContent =
+        storage.textContent.split("—")[0].trim();
+
+
+    document.getElementById("psuResult")
+        .textContent =
+        psu.value + "W";
+
+
+    document.getElementById("mbResult")
+        .textContent =
+        motherboard.textContent.split("—")[0].trim();
+
+
+    checkCompatibility(
+        cpu,
+        gpu,
+        ram,
+        psu,
+        motherboard
+    );
+
+
+    calculateFPS(
+        cpu,
+        gpu,
+        ram
+    );
+
+
+    showParts(
+        cpu,
+        gpu,
+        ram,
+        storage,
+        psu,
+        motherboard,
+        pcCase
+    );
+
+}
+
+
+/* =====================================
+   COMPATIBILIDADE
+===================================== */
+
+function checkCompatibility(
+    cpu,
+    gpu,
+    ram,
+    psu,
+    motherboard
+) {
+
+    const result =
+        document.getElementById(
+            "compatibility"
+        );
+
+
+    let messages = [];
+
+
+    /* SOCKET */
+
+    if (
+        cpu.dataset.socket !==
+        motherboard.dataset.socket
+    ) {
+
+        messages.push(
+            `<div class="bad">
+            ❌ CPU e placa-mãe possuem sockets diferentes.
+            </div>`
+        );
+
+    } else {
+
+        messages.push(
+            `<div class="good">
+            ✅ CPU e placa-mãe são compatíveis.
+            </div>`
+        );
+
+    }
+
+
+    /* RAM */
+
+    if (
+        ram.dataset.type !==
+        motherboard.dataset.ram
+    ) {
+
+        messages.push(
+            `<div class="bad">
+            ❌ O tipo de RAM não corresponde à placa-mãe.
+            </div>`
+        );
+
+    } else {
+
+        messages.push(
+            `<div class="good">
+            ✅ RAM compatível com a placa-mãe.
+            </div>`
+        );
+
+    }
+
+
+    /* FONTE */
+
+    const gpuScore =
+        Number(gpu.dataset.score);
+
+
+    let recommendedPower = 550;
+
+
+    if (gpuScore >= 190) {
+
+        recommendedPower = 850;
+
+    }
+
+    else if (gpuScore >= 160) {
+
+        recommendedPower = 750;
+
+    }
+
+    else if (gpuScore >= 130) {
+
+        recommendedPower = 650;
+
+    }
+
+
+    if (
+        Number(psu.value) <
+        recommendedPower
+    ) {
+
+        messages.push(
+            `<div class="warning">
+            ⚠️ Recomenda-se uma fonte de aproximadamente
+            ${recommendedPower}W ou superior.
+            </div>`
+        );
+
+    } else {
+
+        messages.push(
+            `<div class="good">
+            ✅ Potência da fonte adequada.
+            </div>`
+        );
+
+    }
+
+
+    /* RAM */
+
+    const ramCapacity =
+        Number(ram.dataset.capacity);
+
+
+    if (ramCapacity >= 32) {
+
+        messages.push(
+            `<div class="good">
+            ✅ 32 GB ou mais de RAM: excelente para jogos.
+            </div>`
+        );
+
+    }
+
+    else if (ramCapacity >= 16) {
+
+        messages.push(
+            `<div class="good">
+            ✅ 16 GB de RAM: adequado para muitos jogos.
+            </div>`
+        );
+
+    }
+
+
+    /* GPU */
+
+    if (
+        gpu.value === "rtx5070"
+    ) {
+
+        messages.push(
+            `<div class="good">
+            🚀 RTX 5070 12 GB selecionada.
+            Configuração de alto desempenho.
+            </div>`
+        );
+
+    }
+
+    result.innerHTML =
+        messages.join("");
+
+}
+
+
+/* =====================================
+   FPS
+===================================== */
+
+function calculateFPS(
+    cpu,
+    gpu,
+    ram
+) {
+
+    const container =
+        document.getElementById("games");
+
+
+    const cpuScore =
+        Number(cpu.dataset.score);
+
+
+    const gpuScore =
+        Number(gpu.dataset.score);
+
+
+    const ramCapacity =
+        Number(ram.dataset.capacity);
+
+
+    /*
+       O cálculo abaixo é apenas
+       uma estimativa simplificada.
+    */
+
+    let performance =
+
+        (cpuScore * 0.35) +
+
+        (gpuScore * 0.65);
+
+
+    let ramMultiplier = 1;
+
+
+    if (ramCapacity >= 64) {
+
+        ramMultiplier = 1.08;
+
+    }
+
+    else if (ramCapacity >= 32) {
+
+        ramMultiplier = 1.04;
+
+    }
+
+    else if (ramCapacity < 16) {
+
+        ramMultiplier = 0.75;
+
+    }
+
+
+    performance *=
+        ramMultiplier;
+
+
+    container.innerHTML = "";
+
+
+    games.forEach(game => {
+
+        let fps =
+
+            game.base *
+            (performance / 100);
+
+
+        fps = Math.round(fps);
+
+
+        fps = Math.max(
+            5,
+            Math.min(240, fps)
+        );
+
+
+        const percentage =
+
+            Math.min(
+                100,
+                (fps / 240) * 100
+            );
+
+
+        let quality;
+
+
+        if (fps >= 144) {
+
+            quality = "🔥 Excelente";
+
+        }
+
+        else if (fps >= 100) {
+
+            quality = "🟢 Muito bom";
+
+        }
+
+        else if (fps >= 60) {
+
+            quality = "🟢 Bom";
+
+        }
+
+        else if (fps >= 30) {
+
+            quality = "🟡 Jogável";
+
+        }
+
+        else {
+
+            quality = "🔴 Baixo";
+
+        }
+
+
+        container.innerHTML += `
+
+        <div class="game">
+
+            <div class="game-header">
+
+                <strong>
+                    ${game.name}
+                </strong>
+
+                <span class="fps">
+                    ${fps} FPS
+                </span>
+
+            </div>
+
+            <div class="bar">
+
+                <div
+                    class="bar-fill"
+                    style="width:${percentage}%">
+                </div>
+
+            </div>
+
+            <small>
+                ${quality} • Estimativa em 1080p
+            </small>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =====================================
+   LISTA DE PEÇAS
+===================================== */
+
+function showParts(
+    cpu,
+    gpu,
+    ram,
+    storage,
+    psu,
+    motherboard,
+    pcCase
+) {
+
+    const list =
+        document.getElementById(
+            "partsList"
+        );
+
+
+    const parts = [
+
+        ["🧠 CPU", cpu],
+
+        ["🎮 GPU", gpu],
+
+        ["🧠 RAM", ram],
+
+        ["💾 SSD", storage],
+
+        ["🔌 Fonte", psu],
+
+        ["🧩 Placa-mãe", motherboard],
+
+        ["🖥️ Gabinete", pcCase]
+
+    ];
+
+
+    list.innerHTML = "";
+
+
+    parts.forEach(part => {
+
+        list.innerHTML += `
+
+        <div class="part">
+
+            <span>
+                ${part[0]}
+            </span>
+
+            <strong>
+                ${part[1].textContent.trim()}
+            </strong>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* =====================================
+   RESTAURAR
+===================================== */
+
+function resetPC() {
+
+    document.getElementById("cpu")
+        .selectedIndex = 0;
+
+
+    document.getElementById("gpu")
+        .selectedIndex = 0;
+
+
+    document.getElementById("ram")
+        .selectedIndex = 0;
+
+
+    document.getElementById("storage")
+        .selectedIndex = 0;
+
+
+    document.getElementById("psu")
+        .selectedIndex = 0;
+
+
+    document.getElementById("motherboard")
+        .selectedIndex = 0;
+
+
+    document.getElementById("case")
+        .selectedIndex = 0;
+
+
+    document.getElementById("total")
+        .textContent = "R$ 0";
+
+
+    document.getElementById("cpuResult")
+        .textContent = "-";
+
+
+    document.getElementById("gpuResult")
+        .textContent = "-";
+
+
+    document.getElementById("vramResult")
+        .textContent = "-";
+
+
+    document.getElementById("ramResult")
+        .textContent = "-";
+
+
+    document.getElementById("storageResult")
+        .textContent = "-";
+
+
+    document.getElementById("psuResult")
+        .textContent = "-";
+
+
+    document.getElementById("mbResult")
+        .textContent = "-";
+
+
+    document.getElementById("compatibility")
+        .innerHTML =
+        "Monte o PC para verificar.";
+
+
+    document.getElementById("games")
+        .innerHTML = "";
+
+
+    document.getElementById("partsList")
+        .innerHTML = "";
+
+}
+
+</script>
+
+</body>
+</html>
